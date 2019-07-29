@@ -1,0 +1,21 @@
+{
+    "databases": {
+        "auth_postgres": {
+            "host":"10.22.96.3",
+            "port": "5432",
+            "password": "Pz*2*CWMw4eMi*Hbae83",
+            "user": "dylan",
+            "database":"duality"
+        },
+        "auth_redis": {
+            "port": 6380
+        }
+    },
+    "application": {
+        "secret": "j349234lo}sdf34*2"
+    },
+    "hasura": {
+        "url": "http://localhost:8080/v1/graphql",
+        "adminSecret": "myadminsecretkey"
+    }
+}
