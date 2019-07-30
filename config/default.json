@@ -6,10 +6,12 @@
             "password": "docker",
             "user": "postgresql",
             "database":"duality",
-            "forceclean": false
+            "forceclean": false,
+            "full_uri": null
         },
         "auth_redis": {
-            "port": 6379
+            "port": 6379,
+            "full_uri": null
         }
     },
     "application": {
