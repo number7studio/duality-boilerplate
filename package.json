@@ -9,7 +9,8 @@
     "scli": "sequelize-cli",
     "prettier:base": "prettier --parser typescript --single-quote",
     "prettier:check": "yarn run prettier:base --list-different \"src/**/*.{ts,tsx}\"",
-    "prettier:write": "yarn run prettier:base --write \"src/**/*.{ts,tsx}\""
+    "prettier:write": "yarn run prettier:base --write \"src/**/*.{ts,tsx}\"",
+    "start": "ts-node src/server.ts"
   },
   "author": "",
   "license": "ISC",
