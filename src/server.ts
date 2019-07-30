@@ -1,5 +1,5 @@
-import { appPromise } from "./app";
+import { appPromise } from './app';
 
-appPromise.then((app) => {
+appPromise.then(app => {
   app.listen(3000);
-})
+});
