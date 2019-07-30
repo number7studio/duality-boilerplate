@@ -15,7 +15,7 @@ const app = new Koa();
 app.use(auth);
 app.use(cors());
 
-export const appPromise = sequelize.authenticate().then(() => {
+export const appPromise = sequelize.sync().then(() => {
   const router = new Router();
 
   app.use(bodyParser());

@@ -13,7 +13,8 @@
         }
     },
     "application": {
-        "secret": "j349234lo}sdf34*2"
+        "secret": "j349234lo}sdf34*2",
+        "port": 3000
     },
     "hasura": {
         "url": "http://localhost:8080/v1/graphql",

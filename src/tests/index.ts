@@ -19,5 +19,9 @@ export const getUserToken = async () => {
 };
 
 export const resetDatabase = async () => {
-  return sequelize.sync({ alter: true, force: true });
+  return sequelize.authenticate().then(() => {
+      for(let model in sequelize.models) {
+          sequelize.models[model].truncate();
+      }
+  })
 };
