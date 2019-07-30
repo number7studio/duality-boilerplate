@@ -18,7 +18,6 @@ export const query = async (query) => {
                 return reject(new Error('Error acquiring client' + err.stack))
             }
             client.query(query, (err, result) => {
-                console.log(query)
                 release()
                 if (err) {
                     return reject(new Error('Error executing query' + err.stack))

@@ -5,26 +5,83 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "scli": "sequelize-cli",
+    "prettier:base": "prettier --parser typescript --single-quote",
+    "prettier:check": "yarn run prettier:base --list-different \"src/**/*.{ts,tsx}\"",
+    "prettier:write": "yarn run prettier:base --write \"src/**/*.{ts,tsx}\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@koa/cors": "^2.2.3",
     "@types/bcrypt": "^3.0.0",
+    "@types/jest": "^24.0.15",
     "@types/koa": "^2.0.49",
     "@types/node": "^12.6.8",
     "@types/pg": "^7.4.14",
     "@types/redis": "^2.8.13",
+    "@types/sequelize": "^4.28.4",
+    "@types/supertest": "^2.0.8",
     "bcrypt": "^3.0.6",
+    "config": "^3.2.2",
     "graphql-request": "^1.8.2",
+    "jest": "^24.8.0",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-proxy": "^1.0.0-alpha.3",
+    "koa-router": "^7.4.0",
     "nodemon": "^1.19.1",
     "pg": "^7.11.0",
+    "prettier": "^1.18.2",
     "redis": "^2.8.0",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.11.0",
+    "sequelize-typescript": "^1.0.0-beta.3",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^5.5.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "**/*.{ts,js}",
+      "!**/node_modules/**",
+      "!**/build/**",
+      "!**/coverage/**"
+    ],
+    "transform": {
+      "\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "coverageReporters": [
+      "text",
+      "text-summary"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)x?$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/",
+      "/coverage/"
+    ]
   }
 }

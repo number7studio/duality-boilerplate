@@ -1,0 +1,22 @@
+{
+    "databases": {
+        "auth_postgres": {
+            "host":"localhost",
+            "port": "5432",
+            "password": "docker",
+            "user": "postgresql",
+            "database":"duality_test",
+            "forceclean": true
+        },
+        "auth_redis": {
+            "port": 6379
+        }
+    },
+    "application": {
+        "secret": "j349234lo}sdf34*2"
+    },
+    "hasura": {
+        "url": "http://localhost:8080/v1/graphql",
+        "adminSecret": "myadminsecretkey"
+    }
+}

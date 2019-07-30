@@ -1,4 +1,5 @@
-import { verifySession } from "./sessions";
+import { getSession } from "./sessions";
+import UserRoles from "../database/models/user_roles";
 
 export enum Roles {
     ANONYMOUS = 'anonymous',
@@ -8,27 +9,34 @@ export enum Roles {
 
 interface AuthedUser {
     user_id: number|null;
-    role: string[];
+    roles: string[];
 }
 
 export const auth = async (ctx, next) => {
     const token = ctx.get('x-auth-token');
     if (!token) {
         ctx.AuthedUser = {
-            user_id: 3,
-            role: [Roles.ANONYMOUS]
+            userId: null,
+            roles: [Roles.ANONYMOUS]
         }
         return await next();
     }
 
-    const loggedIn = verifySession(token);
+    try {
+        const session = await getSession(token);
+        ctx.AuthedUser = {
+            userId: session.userId,
+            roles: (await UserRoles.findAll({
+                where: {
+                    userId: session.userId
+                }
+            })).map((ur) => ur.role)
 
-    if (!loggedIn) {
-        ctx.status = 401;
-        return ctx.body = { 'message': 'not authorized' };
-    } else {
-        await next();
+        }
+    } catch(e) {
+        ctx.throw(401, 'This token is either malformed or revoked. Please reauthenticate.');
     }
+    await next();
 }
 
 export const RequiresOneOfRoles = (roles: Roles[]) => {
@@ -38,7 +46,7 @@ export const RequiresOneOfRoles = (roles: Roles[]) => {
             return await next();
         }  
 
-        const authedUsersRoles = ctx.AuthedUser.role
+        const authedUsersRoles = ctx.AuthedUser.roles
 
         const roleIncluded = roles.reduce((acc, role) => {
            return acc || (authedUsersRoles.indexOf(role) !== -1)

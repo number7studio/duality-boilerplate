@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 
 import { query } from '../database/pg';
 import { createUser } from '../dao/users';
-import { createSession, verifySession } from './sessions';
+import { createSession } from './sessions';
 
 export const signup = createUser;
 
