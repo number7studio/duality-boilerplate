@@ -1,7 +1,7 @@
-import { appPromise } from './app';
+import serverStart from './app';
 import config from 'config';
 
-appPromise.then(app => {
+serverStart.then(app => {
   app.listen(config.get('application.port'), () => {
     console.log('Listenting on', config.get('application.port'))
   });

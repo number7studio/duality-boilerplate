@@ -1,11 +1,11 @@
 import request from 'supertest';
-import { appPromise } from './app';
+import serverStart from './app';
 import { getUserToken, resetDatabase } from './tests/index';
 
 test('Hello world works', async () => {
   await resetDatabase();
 
-  const app = await appPromise;
+  const app = await serverStart;
   const response = await request(app.callback()).get('/health');
   expect(response.status).toBe(200);
   expect(response.text).toBe('Success');
@@ -13,7 +13,7 @@ test('Hello world works', async () => {
 
 test('Signup and login', async () => {
   await resetDatabase();
-  const app = await appPromise;
+  const app = await serverStart;
 
   const userResponse = await request(app.callback())
     .post('/auth/signup')
@@ -38,7 +38,7 @@ describe('Authorization', () => {
   beforeAll(async () => {
     await resetDatabase();
     token = await getUserToken();
-    app = await appPromise;
+    app = await serverStart;
   });
 
   test('Accessing admin endpoint as user', async () => {
@@ -72,7 +72,7 @@ describe('Mood', () => {
   beforeAll(async () => {
     await resetDatabase();
     token = await getUserToken();
-    app = await appPromise;
+    app = await serverStart;
   });
 
   test('Creating Mood entries', async () => {

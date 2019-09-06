@@ -2,6 +2,5 @@
     "watch": ["src"],
     "ext": "ts",
     "ignore": ["src/**/*.spec.ts"],
-    "exec": "ts-node ./src/server.ts",
-    "autoAttachChildProcesses": true
+    "exec": "node --inspect -r ts-node/register ./src/server.ts"
   }

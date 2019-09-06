@@ -5,7 +5,7 @@ import cors from '@koa/cors';
 
 import { auth, RequiresOneOfRoles, Roles } from './auth/middlware';
 import User from './database/models/users';
-import { sequelize } from './database/sequelize';
+import sequelize from './database/sequelize';
 import Auth from './database/models/auth';
 import UserRoles from './database/models/user_roles';
 import moodRouter from './routes/moods';
@@ -15,7 +15,7 @@ const app = new Koa();
 app.use(auth);
 app.use(cors());
 
-export const appPromise = sequelize.sync().then(() => {
+export default sequelize.sync().then(() => {
   const router = new Router();
 
   app.use(bodyParser());

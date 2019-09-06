@@ -1,0 +1,15 @@
+yarn run v1.17.3
+warning ../../../package.json: No license field
+$ nodemon
+[33m[nodemon] 1.19.1[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: /home/dylan/Projects/duality/server/src/**/*[39m
+[32m[nodemon] starting `ts-node ./src/server.ts`[39m
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: EBADF: bad file descriptor, read
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+Listenting on 3000

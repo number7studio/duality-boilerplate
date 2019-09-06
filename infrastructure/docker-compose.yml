@@ -1,0 +1,48 @@
+version: '3'
+services:
+  postgres:
+    restart: always
+    image: postgres:11
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: duality
+      POSTGRES_USER: postgresql
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../_data/postgres:/var/lib/postgresql/data
+    command: postgres -N 500
+
+  redis:
+    restart: always
+    image: redis
+    ports:
+      - "6379:6379"
+
+  server:
+    build: 
+      context: ../server
+      dockerfile: dev.Dockerfile
+    ports:
+      - 3000:3000
+    links:
+      - postgres
+      - redis
+    environment:
+      - DATABASE_URL=postgres://postgresql:docker@postgres:5432/duality
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ../server:/usr/src/app
+    command: ['scripts/dev/start.sh']
+
+  client:
+    build: 
+      context: ../client
+      dockerfile: dev.Dockerfile
+    ports:
+      - 3001:3000
+    volumes:
+      - ../client:/usr/src/app
+    command: ['scripts/dev/start.sh']
+
+

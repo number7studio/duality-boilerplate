@@ -1,9 +1,9 @@
 import request from 'supertest';
-import { appPromise } from '../app';
-import { sequelize } from '../database/sequelize';
+import serverStarted from '../app';
+import sequelize from '../database/sequelize';
 
 export const getUserToken = async () => {
-  const app = await appPromise;
+  const app = await serverStarted;
 
   await request(app.callback())
     .post('/auth/signup')
